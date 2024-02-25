@@ -129,29 +129,66 @@ cpm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/build
 .PHONY : cpm/fast
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+#=============================================================================
+# Target rules for targets named mutate
+
+# Build rule for target.
+mutate: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mutate
+.PHONY : mutate
+
+# fast build rule for target.
+mutate/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mutate.dir/build.make CMakeFiles/mutate.dir/build
+.PHONY : mutate/fast
+
+src/cpm/main.o: src/cpm/main.cpp.o
+.PHONY : src/cpm/main.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/cpm/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm/main.cpp.o
+.PHONY : src/cpm/main.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/cpm/main.i: src/cpm/main.cpp.i
+.PHONY : src/cpm/main.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/cpm/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm/main.cpp.i
+.PHONY : src/cpm/main.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/cpm/main.s: src/cpm/main.cpp.s
+.PHONY : src/cpm/main.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/cpm/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm/main.cpp.s
+.PHONY : src/cpm/main.cpp.s
+
+src/mutate/main.o: src/mutate/main.cpp.o
+.PHONY : src/mutate/main.o
+
+# target to build an object file
+src/mutate/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mutate.dir/build.make CMakeFiles/mutate.dir/src/mutate/main.cpp.o
+.PHONY : src/mutate/main.cpp.o
+
+src/mutate/main.i: src/mutate/main.cpp.i
+.PHONY : src/mutate/main.i
+
+# target to preprocess a source file
+src/mutate/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mutate.dir/build.make CMakeFiles/mutate.dir/src/mutate/main.cpp.i
+.PHONY : src/mutate/main.cpp.i
+
+src/mutate/main.s: src/mutate/main.cpp.s
+.PHONY : src/mutate/main.s
+
+# target to generate assembly for a file
+src/mutate/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mutate.dir/build.make CMakeFiles/mutate.dir/src/mutate/main.cpp.s
+.PHONY : src/mutate/main.cpp.s
 
 # Help Target
 help:
@@ -162,9 +199,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... cpm"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... mutate"
+	@echo "... src/cpm/main.o"
+	@echo "... src/cpm/main.i"
+	@echo "... src/cpm/main.s"
+	@echo "... src/mutate/main.o"
+	@echo "... src/mutate/main.i"
+	@echo "... src/mutate/main.s"
 .PHONY : help
 
 

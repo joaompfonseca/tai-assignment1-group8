@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "tai_assignment1_group8/src",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "cpm::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-cpm-Debug-6d790b01a12a9e924a33.json",
+					"jsonFile" : "target-cpm-Debug-1968e6ef1767a86af1a9.json",
 					"name" : "cpm",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mutate::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mutate-Debug-b904801c875d49731141.json",
+					"name" : "mutate",
 					"projectIndex" : 0
 				}
 			]

@@ -69,28 +69,28 @@ include CMakeFiles/cpm.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cpm.dir/flags.make
 
-CMakeFiles/cpm.dir/src/main.cpp.o: CMakeFiles/cpm.dir/flags.make
-CMakeFiles/cpm.dir/src/main.cpp.o: ../src/main.cpp
-CMakeFiles/cpm.dir/src/main.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpm.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/main.cpp.o -MF CMakeFiles/cpm.dir/src/main.cpp.o.d -o CMakeFiles/cpm.dir/src/main.cpp.o -c "/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/src/main.cpp"
+CMakeFiles/cpm.dir/src/cpm/main.cpp.o: CMakeFiles/cpm.dir/flags.make
+CMakeFiles/cpm.dir/src/cpm/main.cpp.o: ../src/cpm/main.cpp
+CMakeFiles/cpm.dir/src/cpm/main.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpm.dir/src/cpm/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/cpm/main.cpp.o -MF CMakeFiles/cpm.dir/src/cpm/main.cpp.o.d -o CMakeFiles/cpm.dir/src/cpm/main.cpp.o -c "/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/src/cpm/main.cpp"
 
-CMakeFiles/cpm.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/src/main.cpp" > CMakeFiles/cpm.dir/src/main.cpp.i
+CMakeFiles/cpm.dir/src/cpm/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/cpm/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/src/cpm/main.cpp" > CMakeFiles/cpm.dir/src/cpm/main.cpp.i
 
-CMakeFiles/cpm.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/src/main.cpp" -o CMakeFiles/cpm.dir/src/main.cpp.s
+CMakeFiles/cpm.dir/src/cpm/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/cpm/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/src/cpm/main.cpp" -o CMakeFiles/cpm.dir/src/cpm/main.cpp.s
 
 # Object files for target cpm
 cpm_OBJECTS = \
-"CMakeFiles/cpm.dir/src/main.cpp.o"
+"CMakeFiles/cpm.dir/src/cpm/main.cpp.o"
 
 # External object files for target cpm
 cpm_EXTERNAL_OBJECTS =
 
-cpm: CMakeFiles/cpm.dir/src/main.cpp.o
+cpm: CMakeFiles/cpm.dir/src/cpm/main.cpp.o
 cpm: CMakeFiles/cpm.dir/build.make
 cpm: CMakeFiles/cpm.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignments/tai-assignment1-group8/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable cpm"
