@@ -18,7 +18,7 @@ The `mutate` program is a simple command-line tool that mutates a given input fi
 ### Usage
 
 ```
-$ mutate \
+$ ./mutate \
 -i <string:input file path> \
 [-o <string:output file path>] \
 [-s <uint:seed>] \
@@ -42,7 +42,7 @@ $ mutate \
 ### Example for testing
 
 ```
-$ mutate -i ../example/chry_test.txt -o ../example/chry_test_mod.txt -s 1234 -p A 0.5 -p C 0.9
+$ ./mutate -i ../example/chry_test.txt -o ../example/chry_test_mod.txt -s 1234 -p A 0.5 -p C 0.9
 ```
 
 ## Authors

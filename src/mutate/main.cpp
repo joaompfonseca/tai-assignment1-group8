@@ -1,11 +1,8 @@
 #include <iostream>
-#include <unistd.h> // for getopt
+#include <unistd.h>
 #include <string>
-#include <random>
-#include <unordered_set>
 #include <map>
 #include <vector>
-#include <utility>
 #include <fstream>
 #include <set>
 
@@ -56,7 +53,7 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
                 break;
             case 'h':
                 cout
-                        << "Usage: mutate -i <string:input file path> [-o <string:output file path>] [-s <uint:seed>] [-p <char:symbol> <double:probability> ...]"
+                        << "Usage: ./mutate -i <string:input file path> [-o <string:output file path>] [-s <uint:seed>] [-p <char:symbol> <double:probability> ...]"
                         << endl;
                 exit(0);
             case '?':
