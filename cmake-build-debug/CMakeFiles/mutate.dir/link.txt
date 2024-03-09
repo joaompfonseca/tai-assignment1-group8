@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/mutate.dir/src/mutate/main.cpp.o -o mutate 
