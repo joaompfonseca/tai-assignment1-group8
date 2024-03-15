@@ -50,7 +50,6 @@ void CopyModelRunner::run_step() {
 
         if(!sequence_map.empty()) {
             copy_model = sequence_map[sequence];
-            cout << "Reference: " << copy_model.reference << endl;
             pred_char = stream[copy_model.reference];
         } else {
             copy_model = CopyModel();
@@ -84,7 +83,7 @@ void CopyModelRunner::run_step() {
         }
 
         copy_model.add_anchor(ptr);
-        cout << "Reference: " << copy_model.reference << endl;
+        sequence_map[sequence] = copy_model;
     } else {
         cout << "Sequence not found" << endl;
         estimated_number_of_bits += -log2(static_cast<double>(counts[actual_char]) / stream_size);
