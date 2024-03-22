@@ -141,9 +141,20 @@ int main(int argc, char *argv[]) {
     // Create a copy model runner
     CopyModelRunner copyModelRunner = CopyModelRunner(content, alphabet, programArguments.threshold, programArguments.smoothingFactor, programArguments.windowSize, programArguments.globalMetrics);
 
+    // Time the execution
+    clock_t start = clock();
+
     while (copyModelRunner.has_next()) {
         copyModelRunner.run_step();
     }
+
+    clock_t end = clock();
+
+    double result = copyModelRunner.estimated_number_of_bits / content.size();
+
+    cout << "Estimated number of bits per symbol: " << result << endl;
+
+    cout << "Execution time: " << (double) (end - start) / CLOCKS_PER_SEC << " seconds" << endl;
 
     return 0;
 

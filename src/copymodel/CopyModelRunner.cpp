@@ -40,7 +40,7 @@ bool CopyModelRunner::has_next() const {
 
 void CopyModelRunner::run_step() {
     string sequence = ptr - window_size < 0 ? string(window_size - ptr, alphabet[0]) + stream.substr(0, ptr) : stream.substr(ptr - window_size, window_size);
-    cout << "Sequence: " << sequence << endl;
+    //cout << "Sequence: " << sequence << endl;
     char actual_char = stream[ptr];
 
     if (sequence_map.empty() || sequence_map.find(sequence) != sequence_map.end()) {
@@ -57,7 +57,7 @@ void CopyModelRunner::run_step() {
             pred_char = alphabet[0];
         }
 
-        cout << "Predicted: " << pred_char << " Actual: " << actual_char << endl;
+        //cout << "Predicted: " << pred_char << " Actual: " << actual_char << endl;
 
         if(!global_metrics) {
             hits = copy_model.hits;
@@ -69,30 +69,32 @@ void CopyModelRunner::run_step() {
         if (pred_char == actual_char) {
             hits++;
             estimated_number_of_bits += -log2(symbol_prob);
-            cout << "Hit" << endl;
+            //cout << "Hit" << endl;
         } else {
             misses++;
             double relative_freq = static_cast<double>(counts[actual_char]) / (stream_size - counts[pred_char]);
             estimated_number_of_bits += -log2((1 - symbol_prob) * relative_freq);
-            cout << "Miss" << endl;
+            //cout << "Miss" << endl;
         }
 
         // if sequence map not empty
         if(!sequence_map.empty() && hits / (hits + misses) < threshold) {
             copy_model.update_reference(true);
+            hits = 0;
+            misses = 0;
         }
 
         copy_model.add_anchor(ptr);
         sequence_map[sequence] = copy_model;
     } else {
-        cout << "Sequence not found" << endl;
+        //cout << "Sequence not found" << endl;
         estimated_number_of_bits += -log2(static_cast<double>(counts[actual_char]) / stream_size);
         sequence_map[sequence] = CopyModel(ptr);
     }
 
     ptr++;
 
-    cout << "Estimated number of bits: " << estimated_number_of_bits << endl;
+    //cout << "Estimated number of bits: " << estimated_number_of_bits << endl;
 }
 
 // Test

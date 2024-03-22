@@ -17,6 +17,7 @@ public:
 
     bool has_next() const;
     void run_step();
+    double estimated_number_of_bits;
 
 private:
     string stream;
@@ -27,7 +28,6 @@ private:
     bool global_metrics;
     map<char, int> counts;
     map<string,CopyModel> sequence_map;
-    double estimated_number_of_bits;
     int ptr;
     int hits;
     int misses;
