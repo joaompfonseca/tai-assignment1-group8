@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/mutate.dir/src/mutate/main.cpp.o -o mutate 
+/usr/bin/c++ -Wall -O3 -rdynamic CMakeFiles/mutate.dir/src/mutate/main.cpp.o -o mutate 

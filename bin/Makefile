@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test
-
-# Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
-.PHONY : test
-
-# fast build rule for target.
-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
-.PHONY : test/fast
-
-#=============================================================================
 # Target rules for targets named cpm
 
 # Build rule for target.
@@ -155,12 +142,92 @@ mutate/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mutate.dir/build.make CMakeFiles/mutate.dir/build
 .PHONY : mutate/fast
 
+#=============================================================================
+# Target rules for targets named filereader
+
+# Build rule for target.
+filereader: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 filereader
+.PHONY : filereader
+
+# fast build rule for target.
+filereader/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filereader.dir/build.make CMakeFiles/filereader.dir/build
+.PHONY : filereader/fast
+
+#=============================================================================
+# Target rules for targets named test_cpm
+
+# Build rule for target.
+test_cpm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_cpm
+.PHONY : test_cpm
+
+# fast build rule for target.
+test_cpm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/build
+.PHONY : test_cpm/fast
+
+src/copymodel/CopyModel.o: src/copymodel/CopyModel.cpp.o
+.PHONY : src/copymodel/CopyModel.o
+
+# target to build an object file
+src/copymodel/CopyModel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/src/copymodel/CopyModel.cpp.o
+.PHONY : src/copymodel/CopyModel.cpp.o
+
+src/copymodel/CopyModel.i: src/copymodel/CopyModel.cpp.i
+.PHONY : src/copymodel/CopyModel.i
+
+# target to preprocess a source file
+src/copymodel/CopyModel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/src/copymodel/CopyModel.cpp.i
+.PHONY : src/copymodel/CopyModel.cpp.i
+
+src/copymodel/CopyModel.s: src/copymodel/CopyModel.cpp.s
+.PHONY : src/copymodel/CopyModel.s
+
+# target to generate assembly for a file
+src/copymodel/CopyModel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/src/copymodel/CopyModel.cpp.s
+.PHONY : src/copymodel/CopyModel.cpp.s
+
+src/copymodel/CopyModelRunner.o: src/copymodel/CopyModelRunner.cpp.o
+.PHONY : src/copymodel/CopyModelRunner.o
+
+# target to build an object file
+src/copymodel/CopyModelRunner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/src/copymodel/CopyModelRunner.cpp.o
+.PHONY : src/copymodel/CopyModelRunner.cpp.o
+
+src/copymodel/CopyModelRunner.i: src/copymodel/CopyModelRunner.cpp.i
+.PHONY : src/copymodel/CopyModelRunner.i
+
+# target to preprocess a source file
+src/copymodel/CopyModelRunner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/src/copymodel/CopyModelRunner.cpp.i
+.PHONY : src/copymodel/CopyModelRunner.cpp.i
+
+src/copymodel/CopyModelRunner.s: src/copymodel/CopyModelRunner.cpp.s
+.PHONY : src/copymodel/CopyModelRunner.s
+
+# target to generate assembly for a file
+src/copymodel/CopyModelRunner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cpm.dir/build.make CMakeFiles/test_cpm.dir/src/copymodel/CopyModelRunner.cpp.s
+.PHONY : src/copymodel/CopyModelRunner.cpp.s
+
 src/cpm.o: src/cpm.cpp.o
 .PHONY : src/cpm.o
 
 # target to build an object file
 src/cpm.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/cpm.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm.cpp.o
 .PHONY : src/cpm.cpp.o
 
 src/cpm.i: src/cpm.cpp.i
@@ -168,7 +235,7 @@ src/cpm.i: src/cpm.cpp.i
 
 # target to preprocess a source file
 src/cpm.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/cpm.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm.cpp.i
 .PHONY : src/cpm.cpp.i
 
 src/cpm.s: src/cpm.cpp.s
@@ -176,32 +243,8 @@ src/cpm.s: src/cpm.cpp.s
 
 # target to generate assembly for a file
 src/cpm.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/cpm.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm.cpp.s
 .PHONY : src/cpm.cpp.s
-
-src/cpm/main.o: src/cpm/main.cpp.o
-.PHONY : src/cpm/main.o
-
-# target to build an object file
-src/cpm/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm/main.cpp.o
-.PHONY : src/cpm/main.cpp.o
-
-src/cpm/main.i: src/cpm/main.cpp.i
-.PHONY : src/cpm/main.i
-
-# target to preprocess a source file
-src/cpm/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm/main.cpp.i
-.PHONY : src/cpm/main.cpp.i
-
-src/cpm/main.s: src/cpm/main.cpp.s
-.PHONY : src/cpm/main.s
-
-# target to generate assembly for a file
-src/cpm/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/cpm/main.cpp.s
-.PHONY : src/cpm/main.cpp.s
 
 src/mutate/main.o: src/mutate/main.cpp.o
 .PHONY : src/mutate/main.o
@@ -227,6 +270,33 @@ src/mutate/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mutate.dir/build.make CMakeFiles/mutate.dir/src/mutate/main.cpp.s
 .PHONY : src/mutate/main.cpp.s
 
+src/reader/FileReader.o: src/reader/FileReader.cpp.o
+.PHONY : src/reader/FileReader.o
+
+# target to build an object file
+src/reader/FileReader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filereader.dir/build.make CMakeFiles/filereader.dir/src/reader/FileReader.cpp.o
+.PHONY : src/reader/FileReader.cpp.o
+
+src/reader/FileReader.i: src/reader/FileReader.cpp.i
+.PHONY : src/reader/FileReader.i
+
+# target to preprocess a source file
+src/reader/FileReader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/reader/FileReader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filereader.dir/build.make CMakeFiles/filereader.dir/src/reader/FileReader.cpp.i
+.PHONY : src/reader/FileReader.cpp.i
+
+src/reader/FileReader.s: src/reader/FileReader.cpp.s
+.PHONY : src/reader/FileReader.s
+
+# target to generate assembly for a file
+src/reader/FileReader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpm.dir/build.make CMakeFiles/cpm.dir/src/reader/FileReader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filereader.dir/build.make CMakeFiles/filereader.dir/src/reader/FileReader.cpp.s
+.PHONY : src/reader/FileReader.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -236,17 +306,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... cpm"
+	@echo "... filereader"
 	@echo "... mutate"
-	@echo "... test"
+	@echo "... test_cpm"
+	@echo "... src/copymodel/CopyModel.o"
+	@echo "... src/copymodel/CopyModel.i"
+	@echo "... src/copymodel/CopyModel.s"
+	@echo "... src/copymodel/CopyModelRunner.o"
+	@echo "... src/copymodel/CopyModelRunner.i"
+	@echo "... src/copymodel/CopyModelRunner.s"
 	@echo "... src/cpm.o"
 	@echo "... src/cpm.i"
 	@echo "... src/cpm.s"
-	@echo "... src/cpm/main.o"
-	@echo "... src/cpm/main.i"
-	@echo "... src/cpm/main.s"
 	@echo "... src/mutate/main.o"
 	@echo "... src/mutate/main.i"
 	@echo "... src/mutate/main.s"
+	@echo "... src/reader/FileReader.o"
+	@echo "... src/reader/FileReader.i"
+	@echo "... src/reader/FileReader.s"
 .PHONY : help
 
 

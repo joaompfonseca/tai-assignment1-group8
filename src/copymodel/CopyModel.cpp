@@ -1,7 +1,3 @@
-//
-// Created by diogopaiva21 on 10-03-2024.
-//
-
 #include "CopyModel.h"
 #include <algorithm>
 #include <iostream>

@@ -8,7 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm/main.cpp" "CMakeFiles/cpm.dir/src/cpm/main.cpp.o" "gcc" "CMakeFiles/cpm.dir/src/cpm/main.cpp.o.d"
+  "/home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModel.cpp" "CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o" "gcc" "CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o.d"
+  "/home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModelRunner.cpp" "CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o" "gcc" "CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o.d"
+  "/home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm.cpp" "CMakeFiles/cpm.dir/src/cpm.cpp.o" "gcc" "CMakeFiles/cpm.dir/src/cpm.cpp.o.d"
+  "/home/rafael/Documentos/TAI/tai-assignment1-group8/src/reader/FileReader.cpp" "CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o" "gcc" "CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

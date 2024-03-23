@@ -69,31 +69,79 @@ include CMakeFiles/cpm.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cpm.dir/flags.make
 
-CMakeFiles/cpm.dir/src/cpm/main.cpp.o: CMakeFiles/cpm.dir/flags.make
-CMakeFiles/cpm.dir/src/cpm/main.cpp.o: /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm/main.cpp
-CMakeFiles/cpm.dir/src/cpm/main.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpm.dir/src/cpm/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/cpm/main.cpp.o -MF CMakeFiles/cpm.dir/src/cpm/main.cpp.o.d -o CMakeFiles/cpm.dir/src/cpm/main.cpp.o -c /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm/main.cpp
+CMakeFiles/cpm.dir/src/cpm.cpp.o: CMakeFiles/cpm.dir/flags.make
+CMakeFiles/cpm.dir/src/cpm.cpp.o: /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm.cpp
+CMakeFiles/cpm.dir/src/cpm.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpm.dir/src/cpm.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/cpm.cpp.o -MF CMakeFiles/cpm.dir/src/cpm.cpp.o.d -o CMakeFiles/cpm.dir/src/cpm.cpp.o -c /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm.cpp
 
-CMakeFiles/cpm.dir/src/cpm/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/cpm/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm/main.cpp > CMakeFiles/cpm.dir/src/cpm/main.cpp.i
+CMakeFiles/cpm.dir/src/cpm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/cpm.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm.cpp > CMakeFiles/cpm.dir/src/cpm.cpp.i
 
-CMakeFiles/cpm.dir/src/cpm/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/cpm/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm/main.cpp -o CMakeFiles/cpm.dir/src/cpm/main.cpp.s
+CMakeFiles/cpm.dir/src/cpm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/cpm.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rafael/Documentos/TAI/tai-assignment1-group8/src/cpm.cpp -o CMakeFiles/cpm.dir/src/cpm.cpp.s
+
+CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o: CMakeFiles/cpm.dir/flags.make
+CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o: /home/rafael/Documentos/TAI/tai-assignment1-group8/src/reader/FileReader.cpp
+CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o -MF CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o.d -o CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o -c /home/rafael/Documentos/TAI/tai-assignment1-group8/src/reader/FileReader.cpp
+
+CMakeFiles/cpm.dir/src/reader/FileReader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/reader/FileReader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rafael/Documentos/TAI/tai-assignment1-group8/src/reader/FileReader.cpp > CMakeFiles/cpm.dir/src/reader/FileReader.cpp.i
+
+CMakeFiles/cpm.dir/src/reader/FileReader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/reader/FileReader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rafael/Documentos/TAI/tai-assignment1-group8/src/reader/FileReader.cpp -o CMakeFiles/cpm.dir/src/reader/FileReader.cpp.s
+
+CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o: CMakeFiles/cpm.dir/flags.make
+CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o: /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModel.cpp
+CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o -MF CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o.d -o CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o -c /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModel.cpp
+
+CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModel.cpp > CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.i
+
+CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModel.cpp -o CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.s
+
+CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o: CMakeFiles/cpm.dir/flags.make
+CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o: /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModelRunner.cpp
+CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o: CMakeFiles/cpm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o -MF CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o.d -o CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o -c /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModelRunner.cpp
+
+CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModelRunner.cpp > CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.i
+
+CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rafael/Documentos/TAI/tai-assignment1-group8/src/copymodel/CopyModelRunner.cpp -o CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.s
 
 # Object files for target cpm
 cpm_OBJECTS = \
-"CMakeFiles/cpm.dir/src/cpm/main.cpp.o"
+"CMakeFiles/cpm.dir/src/cpm.cpp.o" \
+"CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o" \
+"CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o" \
+"CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o"
 
 # External object files for target cpm
 cpm_EXTERNAL_OBJECTS =
 
-cpm: CMakeFiles/cpm.dir/src/cpm/main.cpp.o
+cpm: CMakeFiles/cpm.dir/src/cpm.cpp.o
+cpm: CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o
+cpm: CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o
+cpm: CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o
 cpm: CMakeFiles/cpm.dir/build.make
 cpm: CMakeFiles/cpm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable cpm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable cpm"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cpm.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
