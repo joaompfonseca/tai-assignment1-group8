@@ -44,7 +44,7 @@ $ ./mutate \
 ### Example for testing
 
 ```
-$ ./mutate -i ../example/chry_test.txt -o ../example/chry_test_mod.txt -p 0.5 -s 1234
+$ ./mutate -i ../example/chry.txt -o ../example/chry_mod.txt -p 0.5 -s 1234
 ```
 
 ## Authors
