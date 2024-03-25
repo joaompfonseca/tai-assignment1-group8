@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wall -O3 -rdynamic CMakeFiles/filereader.dir/src/reader/FileReader.cpp.o -o filereader 

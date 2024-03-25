@@ -5,43 +5,27 @@
 using namespace std;
 
 CopyModel::CopyModel(int reference) {
+    this->start = reference;
     this->reference = reference;
-    this->anchors = vector<int>();
-    if (reference != -1) {
-        this->anchors.push_back(reference);
-    }
+    this->partial_number_of_bits = 0.0;
     this->hits = 0;
     this->misses = 0;
 }
 
-void CopyModel::add_anchor(int position) {
-    if (reference != -1) {
-        anchors.push_back(position);
-    } else {
-        reference = position;
-        anchors = {position};
-    }
+double CopyModel::getBits() {
+    return partial_number_of_bits;
 }
 
-void CopyModel::update_reference(bool remove_current, string criteria) {
-    if (reference != -1 && remove_current) {
-        anchors.erase(remove(anchors.begin(), anchors.end(), reference), anchors.end());
-    }
-    if(!anchors.empty()) {
-        if (criteria == "last") {
-            reference = anchors.back();
-        } else if (criteria == "first") {
-            reference = anchors.front();
-        } else if (criteria == "better") {
-            reference = *max_element(anchors.begin(), anchors.end(), [&](int a, int b) {
-                return hits / (hits + misses);
-            });
-        } else if (criteria == "random") {
-            reference = anchors[rand() % anchors.size()];
-        }
-    } else {
-        reference = -1;
-    }
+int CopyModel::getHits() {
+    return hits;
+}
+
+int CopyModel::getMisses() {
+    return misses;
+}
+
+int CopyModel::getReference() {
+    return reference;
 }
 
 void CopyModel::hit() {
@@ -50,4 +34,19 @@ void CopyModel::hit() {
 
 void CopyModel::miss() {
     misses++;
+}
+
+void CopyModel::incrementReference() {
+    reference++;
+}
+
+void CopyModel::addBits(double amount) {
+    partial_number_of_bits += amount;
+}
+
+void CopyModel::reset() {
+    reference = start;
+    hits = 0;
+    misses = 0;
+    partial_number_of_bits = 0;
 }

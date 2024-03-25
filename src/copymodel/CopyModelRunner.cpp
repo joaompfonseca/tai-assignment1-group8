@@ -4,17 +4,18 @@
 
 using namespace std;
 
-CopyModelRunner::CopyModelRunner(string stream, vector<char> alphabet, double threshold, double smoothing_factor, int window_size, bool global_metrics) {
+CopyModelRunner::CopyModelRunner(string stream, vector<char> alphabet, double threshold, double smoothingFactor, int windowSize, int limit) {
     this->stream = stream;
-    this->stream_size = stream.size();
+    this->streamSize = stream.size();
     this->alphabet = alphabet;
     this->threshold = threshold;
-    this->smoothing_factor = smoothing_factor;
-    this->window_size = window_size;
-    this->global_metrics = global_metrics;
-    this->sequence_map = map<string, CopyModel>();
-    this->estimated_number_of_bits = 0;
+    this->smoothingFactor = smoothingFactor;
+    this->windowSize = windowSize;
+    this->sequenceMap = unordered_map<string, vector<CopyModel>>();
+    this->estimatedNumberOfBits = 0.0;
+    this->limit = limit;
     this->ptr = 0;
+    this->currentReferences = vector<CopyModel>();
 
     for (char c : stream) {
         if (counts.find(c) == counts.end()) {
@@ -23,90 +24,120 @@ CopyModelRunner::CopyModelRunner(string stream, vector<char> alphabet, double th
             counts[c]++;
         }
     }
-
-    if (global_metrics) {
-        this->hits = 0;
-        this->misses = 0;
-    }
 }
 
-bool CopyModelRunner::has_next() const {
-    return ptr < stream_size;
+bool CopyModelRunner::hasNext() {
+    // bool iter = ptr < streamSize;
+    // if (!iter && !currentReferences.empty()) {
+    //     estimatedNumberOfBits += currentReferences[0].getBits();
+    // }
+    // return iter;
+
+    return ptr < streamSize;
 }
 
-void CopyModelRunner::run_step() {
-    string sequence = ptr - window_size < 0 ? string(window_size - ptr, alphabet[0]) + stream.substr(0, ptr) : stream.substr(ptr - window_size, window_size);
-    //cout << "Sequence: " << sequence << endl;
+int CopyModelRunner::runCopyModel(string sequence, CopyModel copyModel) {
     char actual_char = stream[ptr];
+    int reference_ptr = copyModel.getReference();
+    char pred_char = reference_ptr < 0 ? alphabet[0] : stream[reference_ptr];
 
-    if (sequence_map.empty() || sequence_map.find(sequence) != sequence_map.end()) {
+    cout << "Predicted: " << pred_char << ", Actual: " << actual_char << endl;
 
-        char pred_char;
-        CopyModel copy_model;
+    int hits = copyModel.getHits();
+    int misses = copyModel.getMisses();
 
-        if(!sequence_map.empty()) {
-            copy_model = sequence_map[sequence];
-            pred_char = stream[copy_model.reference];
-        } else {
-            copy_model = CopyModel();
-            sequence_map[sequence] = copy_model;
-            pred_char = alphabet[0];
-        }
+    double symbol_prob = (hits + smoothingFactor) / (hits + misses + 2 * smoothingFactor);
 
-        //cout << "Predicted: " << pred_char << " Actual: " << actual_char << endl;
-
-        if(!global_metrics) {
-            hits = copy_model.hits;
-            misses = copy_model.misses;
-        }
-
-        double symbol_prob = (hits + smoothing_factor) / (hits + misses + 2 * smoothing_factor);
-
-        if (pred_char == actual_char) {
-            hits++;
-            estimated_number_of_bits += -log2(symbol_prob);
-            //cout << "Hit" << endl;
-        } else {
-            misses++;
-            double relative_freq = static_cast<double>(counts[actual_char]) / (stream_size - counts[pred_char]);
-            estimated_number_of_bits += -log2((1 - symbol_prob) * relative_freq);
-            //cout << "Miss" << endl;
-        }
-
-        // if sequence map not empty
-        if(!sequence_map.empty() && hits / (hits + misses) < threshold) {
-            copy_model.update_reference(true);
-            hits = 0;
-            misses = 0;
-        }
-
-        copy_model.add_anchor(ptr);
-        sequence_map[sequence] = copy_model;
+    if (pred_char == actual_char) {
+        copyModel.hit();
+        copyModel.addBits(-log2(symbol_prob));
+        cout << "Hit" << endl;
+        hits++;
     } else {
-        //cout << "Sequence not found" << endl;
-        estimated_number_of_bits += -log2(static_cast<double>(counts[actual_char]) / stream_size);
-        sequence_map[sequence] = CopyModel(ptr);
+        copyModel.miss();
+        double relative_freq = (double) counts[actual_char] / (streamSize - counts[pred_char]);
+        copyModel.addBits(-log2((1 - symbol_prob) * relative_freq));
+        misses++;
+        cout << "Miss" << endl;
     }
 
-    ptr++;
+    // disable copy model
+    if(hits / (hits + misses) < threshold) {
+        copyModel.reset();
+        return -1;
+    }
 
-    //cout << "Estimated number of bits: " << estimated_number_of_bits << endl;
+    copyModel.incrementReference();
+    return 0;
+}
+
+void CopyModelRunner::runStep() {
+    string sequence = ptr - windowSize < 0 ? string(windowSize - ptr, alphabet[0]) + stream.substr(0, ptr) : stream.substr(ptr - windowSize, windowSize);
+    cout << "Sequence: " << sequence << endl;
+
+    // no active copy models yet
+    if (currentReferences.empty()) {
+        if (sequenceMap.empty()) {
+            CopyModel copyModel = CopyModel(-1);
+            // add sequence
+            sequenceMap[sequence] = vector<CopyModel>();
+            sequenceMap[sequence].push_back(copyModel);
+            currentReferences = sequenceMap[sequence];
+        }
+        else if (sequenceMap.find(sequence) != sequenceMap.end()) {
+            cout << "Sequence found" << endl;
+            int bound = min(limit, (int) sequenceMap[sequence].size());
+            for (int i = bound - 1; i >= 0; i--) {
+                CopyModel copyModel = sequenceMap[sequence][i];
+                currentReferences.push_back(copyModel);
+            }
+        }
+        else {
+            cout << "Sequence not found" << endl;
+            char actual_char = stream[ptr];
+            estimatedNumberOfBits += -log2((double)(counts[actual_char]) / streamSize);
+            sequenceMap[sequence] = vector<CopyModel>();
+            sequenceMap[sequence].push_back(CopyModel(ptr));
+            ptr++;
+            return;
+        }
+    }
+
+    int numberOfReferences = currentReferences.size();
+    for (int i = 0; i < numberOfReferences; i++) {
+        CopyModel copyModel = currentReferences[i];
+        cout << "Reference: " << copyModel.getReference() << endl;
+        if (runCopyModel(sequence, copyModel) == -1) {
+            currentReferences.erase(currentReferences.begin() + i);
+
+            // last standing copy model
+            if (currentReferences.empty()) {
+                estimatedNumberOfBits += copyModel.getBits();
+                break;
+            }
+        }
+    }
+
+    sequenceMap[sequence].push_back(CopyModel(ptr)); // here it is guaranteed that the sequence is in the map
+    ptr++;
 }
 
 // Test
-//int main() {
-//    string stream = "GATGAAGATTAGAT";
+// int main() {
+//    string stream = "AAAAAT"; //"GATGGATTAGATGG";
 //    vector<char> alphabet = {'A','G','T'};
 //    double threshold = 0.2;
-//    double smoothing_factor = 1.0;
-//    int window_size = 3;
+//    double smoothingFactor = 1.0;
+//    int windowSize = 3;
 //    bool global_metrics = true;
-//
-//    CopyModelRunner copyModelRunner = CopyModelRunner(stream, alphabet, threshold, smoothing_factor, window_size, global_metrics);
-//
-//    while (copyModelRunner.has_next()) {
-//        copyModelRunner.run_step();
+
+//    CopyModelRunner copyModelRunner = CopyModelRunner(stream, alphabet, threshold, smoothingFactor, windowSize, global_metrics);
+
+//    while (copyModelRunner.hasNext()) {
+//        copyModelRunner.runStep();
 //    }
-//
+
+//    cout << "Estimated number of bits: " << copyModelRunner.estimatedNumberOfBits << endl;
+
 //    return 0;
-//}
+// }

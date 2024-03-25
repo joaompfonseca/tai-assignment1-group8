@@ -3,30 +3,32 @@
 
 #include <string>
 #include <map>
+#include <unordered_map> 
+#include <vector>
 #include "CopyModel.h"
 
 using namespace std;
 
 class CopyModelRunner {
 public:
-    CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothing_factor, int window_size, bool global_metrics = false);
+    CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothingFactor, int windowSize, int limit = 1);
 
-    bool has_next() const;
-    void run_step();
-    double estimated_number_of_bits;
+    bool hasNext();
+    int runCopyModel(string sequence, CopyModel copyModel);
+    void runStep();
+    double estimatedNumberOfBits;
 
 private:
     string stream;
-    int stream_size;
+    int streamSize;
     double threshold;
-    double smoothing_factor;
-    int window_size;
-    bool global_metrics;
+    double smoothingFactor;
+    int windowSize;
     map<char, int> counts;
-    map<string,CopyModel> sequence_map;
+    unordered_map<string,vector<CopyModel>> sequenceMap;
+    vector<CopyModel> currentReferences;
+    int limit;
     int ptr;
-    int hits;
-    int misses;
     vector<char> alphabet;
 };
 

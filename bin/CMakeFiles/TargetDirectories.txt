@@ -1,6 +1,0 @@
-/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles/cpm.dir
-/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles/mutate.dir
-/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles/filereader.dir
-/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles/test_cpm.dir
-/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles/edit_cache.dir
-/home/rafael/Documentos/TAI/tai-assignment1-group8/bin/CMakeFiles/rebuild_cache.dir

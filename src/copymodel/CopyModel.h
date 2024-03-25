@@ -10,16 +10,22 @@ class CopyModel {
 
 public:
     CopyModel(int reference = -1);
-    void add_anchor(int position);
-    void update_reference(bool remove_current = true, string criteria = "last");
+    double getBits();
+    int getHits();
+    int getMisses();
+    int getReference();
     void hit();
     void miss();
+    void incrementReference();
+    void addBits(double amount);
+    void reset();
 
+private:
+    int start;
     int reference;
     int hits;
     int misses;
-private:
-    vector<int> anchors;
+    double partial_number_of_bits;
 };
 
 

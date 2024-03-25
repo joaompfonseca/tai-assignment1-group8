@@ -77,7 +77,7 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
                 }
                 break;
             case 'h':
-                cout << "Usage: ./cpm -f filename -t threshold -s smoothing_factor -w window_size -g" << endl
+                cout << "Usage: ./cpm -f filename -t threshold -s smoothingFactor -w windowSize -g" << endl
                      << "Options:" << endl
                      << " (-h) Help: shows how to use the program" << endl
                      << " (-f) Filename: filename (required)" << endl
@@ -120,7 +120,7 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
     return args;
 }
 
-// Arguments to be passed: <filename> <threshold> <smoothing_factor> <window_size> <global_metrics>
+// Arguments to be passed: <filename> <threshold> <smoothingFactor> <windowSize> <global_metrics>
 int main(int argc, char *argv[]) {
 
     // parse program arguments
@@ -139,18 +139,18 @@ int main(int argc, char *argv[]) {
     vector<char> alphabet = fileReader.getAlphabet();
 
     // Create a copy model runner
-    CopyModelRunner copyModelRunner = CopyModelRunner(content, alphabet, programArguments.threshold, programArguments.smoothingFactor, programArguments.windowSize, programArguments.globalMetrics);
+    CopyModelRunner copyModelRunner = CopyModelRunner(content, alphabet, programArguments.threshold, programArguments.smoothingFactor, programArguments.windowSize);
 
     // Time the execution
     clock_t start = clock();
 
-    while (copyModelRunner.has_next()) {
-        copyModelRunner.run_step();
+    while (copyModelRunner.hasNext()) {
+        copyModelRunner.runStep();
     }
 
     clock_t end = clock();
 
-    double result = copyModelRunner.estimated_number_of_bits / content.size();
+    double result = copyModelRunner.estimatedNumberOfBits / content.size();
 
     cout << "Estimated number of bits per symbol: " << result << endl;
 
