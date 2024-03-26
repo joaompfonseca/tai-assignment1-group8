@@ -16,7 +16,7 @@ struct ProgramArguments {
     double threshold{}; // New field for threshold
     double smoothingFactor{}; // New field for smoothing factor
     unsigned int windowSize{}; // New field for window size
-    bool globalMetrics{}; // New field for global metrics (assuming it's a boolean flag)
+    unsigned int limit{}; // New field for limit
     string outputFilename; // New field for output filename
 
     // Overload the << operator to print the program arguments
@@ -25,7 +25,7 @@ struct ProgramArguments {
         os << "(-t) Threshold: " << args.threshold << endl;
         os << "(-s) Smoothing factor: " << args.smoothingFactor << endl;
         os << "(-w) Window size: " << args.windowSize << endl;
-        os << "(-g) Global metrics: " << (args.globalMetrics ? "true" : "false") << endl;
+        os << "(-l) Limit: " << args.limit << endl;
         os << "(-o) Output filename: " << args.outputFilename << endl;
         return os;
     }
@@ -34,7 +34,7 @@ struct ProgramArguments {
 ProgramArguments getProgramArguments(int argc, char *argv[]) {
     ProgramArguments args;
     int opt;
-    while ((opt = getopt(argc, argv, "f:t:s:w:g:o:h")) != -1) {
+    while ((opt = getopt(argc, argv, "f:t:s:w:l:o:h")) != -1) {
         switch (opt) {
             case 'f':
                 args.filename = optarg;
@@ -63,18 +63,11 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
                 break;
-            case 'g':
+            case 'l':
                 try {
-                    string temp = optarg;
-                    if (temp == "true") {
-                        args.globalMetrics = true;
-                    } else if (temp == "false") {
-                        args.globalMetrics = false;
-                    } else {
-                        throw invalid_argument("");
-                    }
+                    args.limit = stoul(optarg);
                 } catch (const invalid_argument &e) {
-                    cerr << "Error: Global metrics (-g) must be a boolean." << endl;
+                    cerr << "Error: Limit (-l) must be an unsigned integer." << endl;
                     exit(EXIT_FAILURE);
                 }
                 break;
@@ -82,14 +75,14 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
                 args.outputFilename = optarg;
                 break;
             case 'h':
-                cout << "Usage: ./cpm -f filename -t threshold -s smoothingFactor -w windowSize -g" << endl
+                cout << "Usage: ./cpm -f filename -t threshold -s smoothingFactor -w windowSize -l limitSize" << endl
                      << "Options:" << endl
                      << " (-h) Help: shows how to use the program" << endl
                      << " (-f) Filename: filename (required)" << endl
                      << " (-t) Threshold: threshold value (required)" << endl
                      << " (-s) Smoothing factor: smoothing factor (required)" << endl
                      << " (-w) Window size: window size (required)" << endl
-                     << " (-g) Global metrics: true or false (required)" << endl;
+                     << " (-l) Limit: limit value (required)" << endl;
                 exit(EXIT_SUCCESS);
             case '?':
                 if (optopt == 'f' || optopt == 't' || optopt == 's' || optopt == 'w' || optopt == 'g' || optopt == 'o') {
@@ -119,8 +112,9 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
         cerr << "Error: Window size (-w) must be an unsigned integer greater than 0." << endl;
         exit(EXIT_FAILURE);
     }
-    if (args.globalMetrics) {
-        cout << "Global metrics enabled." << endl;
+    if (args.limit == 0) {
+        cerr << "Error: Limit (-l) must be an unsigned integer greater than 0." << endl;
+        exit(EXIT_FAILURE);
     }
     return args;
 }
@@ -144,7 +138,7 @@ int main(int argc, char *argv[]) {
     vector<char> alphabet = fileReader.getAlphabet();
 
     // Create a copy model runner
-    CopyModelRunner copyModelRunner = CopyModelRunner(content, alphabet, programArguments.threshold, programArguments.smoothingFactor, programArguments.windowSize);
+    CopyModelRunner copyModelRunner = CopyModelRunner(content, alphabet, programArguments.threshold, programArguments.smoothingFactor, programArguments.windowSize, programArguments.limit);
 
     // Time the execution
     clock_t start = clock();
@@ -171,8 +165,13 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
+    // Write the header if the file is empty
+    if (outputFile.tellp() == 0) {
+        outputFile << "threshold,alpha,window,limit,bps,totalb,time" << endl;
+    }
+
     // Append the result to the output file
-    outputFile << programArguments.threshold << "," << programArguments.smoothingFactor << "," << programArguments.windowSize << "," << result << "," << executionTime << endl;
+    outputFile << programArguments.threshold << "," << programArguments.smoothingFactor << "," << programArguments.windowSize << "," << programArguments.limit << "," << result << "," << copyModelRunner.estimatedNumberOfBits << "," << executionTime << endl;
 
     outputFile.close();
 
