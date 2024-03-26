@@ -2,14 +2,28 @@
 
 ## Description
 
-...
+This first assignment's goal was to explore the usage of copy models for data compression.
+
+This repository contains the [report](report/report.pdf) and the two programs developed for this [assignment](description.pdf): `cpm`
+and `mutate`.
 
 **Course:** Algorithmic Theory of Information (2023/2024).
 
-## Installation
+## The `cpm` program
 
-- ...
-- ...
+...
+
+### Usage
+
+...
+
+### Options
+
+...
+
+### Example
+
+...
 
 ## The `mutate` program
 
@@ -41,10 +55,10 @@ $ ./mutate \
 - Example: -s 1234
 ```
 
-### Example for testing
+### Example
 
 ```
-$ ./mutate -i ../example/chry_test.txt -o ../example/chry_test_mod.txt -p 0.5 -s 1234
+$ ./mutate -i ../example/chry.txt -o ../example/chry_mod.txt -p 0.5 -s 1234
 ```
 
 ## Authors

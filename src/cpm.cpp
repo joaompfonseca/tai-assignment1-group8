@@ -17,6 +17,7 @@ struct ProgramArguments {
     double smoothingFactor{}; // New field for smoothing factor
     unsigned int windowSize{}; // New field for window size
     bool globalMetrics{}; // New field for global metrics (assuming it's a boolean flag)
+    string outputFilename; // New field for output filename
 
     // Overload the << operator to print the program arguments
     friend ostream &operator<<(ostream &os, const ProgramArguments &args) {
@@ -25,6 +26,7 @@ struct ProgramArguments {
         os << "(-s) Smoothing factor: " << args.smoothingFactor << endl;
         os << "(-w) Window size: " << args.windowSize << endl;
         os << "(-g) Global metrics: " << (args.globalMetrics ? "true" : "false") << endl;
+        os << "(-o) Output filename: " << args.outputFilename << endl;
         return os;
     }
 };
@@ -32,7 +34,7 @@ struct ProgramArguments {
 ProgramArguments getProgramArguments(int argc, char *argv[]) {
     ProgramArguments args;
     int opt;
-    while ((opt = getopt(argc, argv, "f:t:s:w:g:h")) != -1) {
+    while ((opt = getopt(argc, argv, "f:t:s:w:g:o:h")) != -1) {
         switch (opt) {
             case 'f':
                 args.filename = optarg;
@@ -76,6 +78,9 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
                 break;
+            case 'o':
+                args.outputFilename = optarg;
+                break;
             case 'h':
                 cout << "Usage: ./cpm -f filename -t threshold -s smoothingFactor -w windowSize -g" << endl
                      << "Options:" << endl
@@ -87,7 +92,7 @@ ProgramArguments getProgramArguments(int argc, char *argv[]) {
                      << " (-g) Global metrics: true or false (required)" << endl;
                 exit(EXIT_SUCCESS);
             case '?':
-                if (optopt == 'f' || optopt == 't' || optopt == 's' || optopt == 'w' || optopt == 'g') {
+                if (optopt == 'f' || optopt == 't' || optopt == 's' || optopt == 'w' || optopt == 'g' || optopt == 'o') {
                     cerr << "Option -" << static_cast<char>(optopt) << " requires an argument." << endl;
                 } else {
                     cerr << "Unknown option -" << static_cast<char>(optopt) << endl;
@@ -155,7 +160,21 @@ int main(int argc, char *argv[]) {
 
     cout << "Estimated number of bits per symbol: " << result << endl;
 
-    cout << "Execution time: " << (double) (end - start) / CLOCKS_PER_SEC << " seconds" << endl;
+    double executionTime = (double) (end - start) / CLOCKS_PER_SEC;
+
+    cout << "Execution time: " << executionTime << " seconds" << endl;
+
+    // Write to csv
+    ofstream outputFile(programArguments.outputFilename, ios::app);
+    if (!outputFile.is_open()) {
+        cerr << "Error: Unable to open output file." << endl;
+        return EXIT_FAILURE;
+    }
+
+    // Append the result to the output file
+    outputFile << programArguments.threshold << "," << programArguments.smoothingFactor << "," << programArguments.windowSize << "," << result << "," << executionTime << endl;
+
+    outputFile.close();
 
     return 0;
 
