@@ -3,6 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -25,7 +28,7 @@ private:
     int start;
     int hits;
     int misses;
-    double partial_number_of_bits;
+    double partialNumberOfBits;
 };
 
 #endif //TAI_ASSIGNMENT1_GROUP8_SRC_COPYMODEL_H

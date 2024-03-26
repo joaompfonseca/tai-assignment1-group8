@@ -37,8 +37,7 @@ bool CopyModelRunner::hasNext() {
     return ptr < streamSize;
 }
 
-int CopyModelRunner::runCopyModel(CopyModel* copyModel) {
-    char actual_char = stream[ptr];
+int CopyModelRunner::runCopyModel(CopyModel* copyModel, char actual_char) {
     int reference_ptr = copyModel->getReference();
     char pred_char = reference_ptr < 0 ? alphabet[0] : stream[reference_ptr];
 
@@ -62,12 +61,12 @@ int CopyModelRunner::runCopyModel(CopyModel* copyModel) {
         misses++;
     }
 
-    // decrement the count of the actual character and total_chars
-    counts[actual_char]--;
-    total_chars--;
-
     // disable copy model
-    if(hits / (hits + misses) < threshold) {
+    if (hits + misses == 15) {
+        copyModel->reset();
+    }
+
+    if(misses > 7) {
         //cout << "Disabling copy model" << endl;
         return -1;
     }
@@ -80,6 +79,7 @@ void CopyModelRunner::runStep() {
     //cout << "Pointer: " << ptr << endl;
     sequence = ptr - windowSize < 0 ? string(windowSize - ptr, alphabet[0]) + stream.substr(0, ptr) : stream.substr(ptr - windowSize, windowSize);
     //cout << "Sequence: " << sequence << endl;
+    char actual_char;
     // new anchor (disabled by default, i.e, not in the currentReferences vector)
 
     // no active copy models yet
@@ -102,12 +102,10 @@ void CopyModelRunner::runStep() {
             }
         }
         else {
-            char actual_char = stream[ptr];
+            actual_char = stream[ptr];
             estimatedNumberOfBits += -log2((double)(counts[actual_char]) / total_chars);
 
-            // decrement the count of the actual character and total_chars
-            counts[actual_char]--;
-            total_chars--;
+            //cout << "Starting new copy model" << endl;
 
             sequenceMap[sequence] = vector<CopyModel>();
             //cout << "Predicted: None, Actual: " << actual_char << endl;
@@ -125,9 +123,11 @@ void CopyModelRunner::runStep() {
 
     vector <CopyModel> newReferences = vector<CopyModel>();
     int numberOfReferences = currentReferences.size();
+    
+    actual_char = stream[ptr];
     double partialBits;
     for (int i = 0; i < numberOfReferences; i++) {
-        if (runCopyModel(&currentReferences[i]) == -1) {
+        if (runCopyModel(&currentReferences[i], actual_char) == -1) {
             partialBits = currentReferences[i].getBits();
             //cout << "Partial bits: " << partialBits << endl;
 
@@ -141,6 +141,10 @@ void CopyModelRunner::runStep() {
         newReferences.push_back(currentReferences[i]);
     }
     currentReferences = newReferences;
+
+    // decrement the count of the actual character and total_chars
+    counts[actual_char]--;
+    total_chars--;
 
     CopyModel copyModel = CopyModel(ptr);
     sequenceMap[sequence].push_back(copyModel); // here it is guaranteed that the sequence is in the map

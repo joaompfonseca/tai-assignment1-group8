@@ -16,7 +16,7 @@ class CopyModelRunner {
 public:
     CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothingFactor, int windowSize, int limit = 1);
     bool hasNext();
-    int runCopyModel(CopyModel* copyModel);
+    int runCopyModel(CopyModel* copyModel, char actual_char);
     void runStep();
     void addRemainingBits();
     double estimatedNumberOfBits;
