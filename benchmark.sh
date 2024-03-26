@@ -25,7 +25,7 @@ done
 # Variable smoothing factor
 for ((i=1; i<=10; i++)); do
     val=$(bc <<< "scale=1; $i / 10")
-    ./cpm -f example/chry.txt -t 0.2 -s "$i" -w 15 -o results/alpha.csv
+    ./cpm -f example/chry.txt -t 0.2 -s "$val" -w 15 -o results/alpha.csv
 done
 
 # Mutate the file

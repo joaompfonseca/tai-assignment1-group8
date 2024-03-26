@@ -7,7 +7,7 @@ for ((i=1; i<=1; i++)); do
 done
 
 # Compress the files
-for ((i=1; i<=1; i++)); do
+for ((i=1; i<=9; i++)); do
     val=$(bc <<< "scale=1; $i / 10")
     tar -cJf example/chry_0"$val".tar.xz example/chry_0"$val".txt
     echo "Tar done"
