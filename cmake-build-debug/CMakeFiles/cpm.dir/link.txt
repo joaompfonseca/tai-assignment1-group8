@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wall -O3 -g -rdynamic CMakeFiles/cpm.dir/src/cpm.cpp.o CMakeFiles/cpm.dir/src/reader/FileReader.cpp.o CMakeFiles/cpm.dir/src/copymodel/CopyModel.cpp.o CMakeFiles/cpm.dir/src/copymodel/CopyModelRunner.cpp.o -o cpm 

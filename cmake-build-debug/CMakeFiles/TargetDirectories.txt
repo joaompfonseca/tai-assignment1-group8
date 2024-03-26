@@ -1,3 +1,0 @@
-/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignment/tai-assignment1-group8/cmake-build-debug/CMakeFiles/cpm.dir
-/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignment/tai-assignment1-group8/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/joaoo/OneDrive - Universidade de Aveiro/UC/TAI/Assignment/tai-assignment1-group8/cmake-build-debug/CMakeFiles/rebuild_cache.dir
