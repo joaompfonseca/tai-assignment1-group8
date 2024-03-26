@@ -147,6 +147,7 @@ int main(int argc, char *argv[]) {
     while (copyModelRunner.hasNext()) {
         copyModelRunner.runStep();
     }
+    copyModelRunner.addRemainingBits();
 
     clock_t end = clock();
 

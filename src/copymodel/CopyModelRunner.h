@@ -5,6 +5,9 @@
 #include <map>
 #include <unordered_map> 
 #include <vector>
+#include <iostream>
+#include <cmath>
+#include <memory>
 #include "CopyModel.h"
 
 using namespace std;
@@ -12,15 +15,16 @@ using namespace std;
 class CopyModelRunner {
 public:
     CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothingFactor, int windowSize, int limit = 1);
-
     bool hasNext();
-    int runCopyModel(string sequence, CopyModel copyModel);
+    int runCopyModel(CopyModel* copyModel);
     void runStep();
+    void addRemainingBits();
     double estimatedNumberOfBits;
 
 private:
     string stream;
     int streamSize;
+    int total_chars;
     double threshold;
     double smoothingFactor;
     int windowSize;
@@ -29,6 +33,7 @@ private:
     vector<CopyModel> currentReferences;
     int limit;
     int ptr;
+    string sequence;
     vector<char> alphabet;
 };
 

@@ -21,12 +21,11 @@ public:
     void reset();
 
 private:
-    int start;
     int reference;
+    int start;
     int hits;
     int misses;
     double partial_number_of_bits;
 };
-
 
 #endif //TAI_ASSIGNMENT1_GROUP8_SRC_COPYMODEL_H
