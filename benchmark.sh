@@ -4,7 +4,7 @@
 g++ -Wall -O3 src/cpm.cpp src/reader/FileReader.cpp src/reader/FileReader.h src/copymodel/CopyModel.cpp src/copymodel/CopyModel.h src/copymodel/CopyModelRunner.h src/copymodel/CopyModelRunner.cpp -o cpm
 
 # Compile the mutation program
-g++ -Wall -O3 src/mutate/main.cpp -o mutate
+g++ -Wall -O3 src/mutate.cpp -o mutate
 
 # If directory does not exist, create it
 if [ ! -d "results" ]; then

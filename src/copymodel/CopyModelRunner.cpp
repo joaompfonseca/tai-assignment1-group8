@@ -14,6 +14,7 @@ CopyModelRunner::CopyModelRunner(string stream, vector<char> alphabet, double th
     this->limit = limit;
     this->ptr = 0;
     this->currentReferences = vector<CopyModel>();
+    this->pastOccurences = vector<vector<bool>>();
 
     int necessaryBits = 1.0;
     for (char c : stream) {
@@ -37,7 +38,22 @@ bool CopyModelRunner::hasNext() {
     return ptr < streamSize;
 }
 
-int CopyModelRunner::runCopyModel(CopyModel* copyModel, char actual_char) {
+bool CopyModelRunner::exceedsThreshold(int maxMisses, int nTries, vector<bool>* past) {
+    vector<bool> last = vector<bool>();
+    int currentMisses = 0;
+
+    for (int i = max(0, (int) past->size() - nTries); i < (int) past->size(); i++) {
+        if (!(*past)[i]) {
+            currentMisses++;
+        }
+        last.push_back((*past)[i]);
+    }
+
+    *past = last;
+    return currentMisses > maxMisses;
+}
+
+int CopyModelRunner::runCopyModel(CopyModel* copyModel, vector<bool>* past, char actual_char) {
     int reference_ptr = copyModel->getReference();
     char pred_char = reference_ptr < 0 ? alphabet[0] : stream[reference_ptr];
 
@@ -53,21 +69,18 @@ int CopyModelRunner::runCopyModel(CopyModel* copyModel, char actual_char) {
         copyModel->addBits(-log2(symbol_prob));
         //cout << "Hit: " << ' ' << symbol_prob << endl;
         hits++;
+        past->push_back(true);
     } else {
         copyModel->miss();
         double relative_freq = (double) counts[actual_char] / (total_chars - counts[pred_char]);
         copyModel->addBits(-log2((1 - symbol_prob) * relative_freq));
         //cout << "Miss: " << "(1 - " << symbol_prob << ") * " << relative_freq << " = " << (1 - symbol_prob) * relative_freq << endl;
         misses++;
+        past->push_back(false);
     }
 
-    // disable copy model
-    if (hits + misses == 15) {
-        copyModel->reset();
-    }
-
-    if(misses > 7) {
-        //cout << "Disabling copy model" << endl;
+    if (exceedsThreshold(7, 15, past)) {
+        // disable copy model
         return -1;
     }
 
@@ -91,6 +104,7 @@ void CopyModelRunner::runStep() {
             sequenceMap[sequence] = vector<CopyModel>();
             sequenceMap[sequence].push_back(copyModel);
             currentReferences = sequenceMap[sequence];
+            pastOccurences.push_back(vector<bool>());
         }
         else if (sequenceMap.find(sequence) != sequenceMap.end()) {
             //cout << "Starting new copy model" << endl;
@@ -99,6 +113,7 @@ void CopyModelRunner::runStep() {
             for (int i = size - 1; i >= size - bound; i--) {
                 CopyModel copyModel = sequenceMap[sequence][i];
                 currentReferences.push_back(copyModel);
+                pastOccurences.push_back(vector<bool>());
             }
         }
         else {
@@ -127,7 +142,8 @@ void CopyModelRunner::runStep() {
     actual_char = stream[ptr];
     double partialBits;
     for (int i = 0; i < numberOfReferences; i++) {
-        if (runCopyModel(&currentReferences[i], actual_char) == -1) {
+        if (runCopyModel(&currentReferences[i], &pastOccurences[i], actual_char) == -1) {
+            pastOccurences.erase(pastOccurences.begin() + i);
             partialBits = currentReferences[i].getBits();
             //cout << "Partial bits: " << partialBits << endl;
 

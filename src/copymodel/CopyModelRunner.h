@@ -8,17 +8,20 @@
 #include <iostream>
 #include <cmath>
 #include <memory>
+#include <deque>
 #include "CopyModel.h"
 
 using namespace std;
 
 class CopyModelRunner {
 public:
-    CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothingFactor, int windowSize, int limit = 1);
+    CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothingFactor, int windowSize, int limit = 100);
     bool hasNext();
-    int runCopyModel(CopyModel* copyModel, char actual_char);
+    int runCopyModel(CopyModel* copyModel, vector<bool>* past, char actual_char);
+    bool exceedsThreshold(int maxMisses, int nTries, vector<bool>* past);
     void runStep();
     void addRemainingBits();
+    bool exceedsThreshold(int maxMisses, int nTries);
     double estimatedNumberOfBits;
 
 private:
@@ -31,6 +34,7 @@ private:
     map<char, int> counts;
     unordered_map<string,vector<CopyModel>> sequenceMap;
     vector<CopyModel> currentReferences;
+    vector<vector<bool>> pastOccurences;
     int limit;
     int ptr;
     string sequence;
