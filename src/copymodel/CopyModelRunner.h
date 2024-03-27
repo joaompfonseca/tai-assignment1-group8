@@ -15,7 +15,7 @@ using namespace std;
 
 class CopyModelRunner {
 public:
-    CopyModelRunner(string stream, vector<char> alphabet , double threshold, double smoothingFactor, int windowSize, int limit = 100);
+    CopyModelRunner(string stream, vector<char> alphabet , int loopbackSize, int missingThreshold, double smoothingFactor, int windowSize, int limit = 1);
     bool hasNext();
     int runCopyModel(CopyModel* copyModel, vector<bool>* past, char actual_char);
     bool exceedsThreshold(int maxMisses, int nTries, vector<bool>* past);
@@ -28,7 +28,8 @@ private:
     string stream;
     int streamSize;
     int total_chars;
-    double threshold;
+    int lookbackSize;
+    int missingThreshold;
     double smoothingFactor;
     int windowSize;
     map<char, int> counts;

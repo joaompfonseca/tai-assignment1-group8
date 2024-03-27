@@ -1,2 +1,2 @@
-threshold,alpha,window,limit,bps,totalb,time
-0.2,1,15,1,1.62612,3.68613e+07,16.4953
+lookback_size,misses_threshold,alpha,window,limit,bps,totalb,time
+15,7,1,15,1,1.48208,3.35962e+07,17.6611

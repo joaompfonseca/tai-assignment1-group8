@@ -38,15 +38,3 @@ string FileReader::getContent() {
 vector<char> FileReader::getAlphabet() {
     return this->alphabet;
 }
-
-// Test
-//int main() {
-//    FileReader fileReader = FileReader("chry_test.txt");
-//    fileReader.read();
-//    cout << fileReader.getContent() << endl;
-//    for (char c : fileReader.getAlphabet()) {
-//        cout << c << " ";
-//    }
-//    cout << endl;
-//    return 0;
-//}

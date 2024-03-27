@@ -2,12 +2,13 @@
 
 using namespace std;
 
-CopyModelRunner::CopyModelRunner(string stream, vector<char> alphabet, double threshold, double smoothingFactor, int windowSize, int limit) {
+CopyModelRunner::CopyModelRunner(string stream, vector<char> alphabet, int lookbackSize, int missingThreshold, double smoothingFactor, int windowSize, int limit) {
     this->stream = stream;
     this->streamSize = stream.size();
     this->total_chars = streamSize;
     this->alphabet = alphabet;
-    this->threshold = threshold;
+    this->lookbackSize = lookbackSize;
+    this->missingThreshold = missingThreshold;
     this->smoothingFactor = smoothingFactor;
     this->windowSize = windowSize;
     this->sequenceMap = unordered_map<string, vector<CopyModel>>();
@@ -74,7 +75,7 @@ int CopyModelRunner::runCopyModel(CopyModel* copyModel, vector<bool>* past, char
         past->push_back(false);
     }
 
-    if (exceedsThreshold(7, 15, past)) {
+    if (exceedsThreshold(this->missingThreshold, this->lookbackSize, past)) {
         // disable copy model
         return -1;
     }
