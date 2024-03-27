@@ -31,35 +31,31 @@ The `mutate` program is a simple command-line tool that mutates symbols in a giv
 probability. The program reads the input file and writes the mutated stream to an output file. The user can specify
 the seed for the random number generator and the probability of mutation.
 
-### Usage
+### Compile
 
-```
-$ ./mutate \
--i input_file_path \
--o output_file_path \
-[-p probability] \
-[-s seed]
-```
+It's optional, since you can use the provided executable inside the `bin` directory.
 
-### Options
+- Run `g++ -Wall -O3 -o mutate src/mutate.cpp` in root to compile the program.
 
-```
-(-h) Help: shows how to use the program
-(-i) Input: path to the input file (required)
-- Example: -i input.txt
-(-o) Output: path to the output file (required)
-- Example: -o output.txt
-(-p) Probability: probability of mutation (default == 0.0)
-- Example: -p 0.5
-(-s) Seed: initialization for the random number generator (default == current time)
-- Example: -s 1234
-```
+### Execute
 
-### Example
+- Run `cd bin` in root to change to the executable's directory.
+- Run `./mutate REQUIRED OPTIONAL` to execute the program.
 
-```
-$ ./mutate -i ../example/chry.txt -o ../example/chry_mod.txt -p 0.5 -s 1234
-```
+#### Required arguments
+
+- `-i input_file_path`: path to the input file (string).
+- `-o output_file_path`: path to the output file (string).
+
+#### Optional arguments
+
+- `-h`: shows how to use the program.
+- `-p probability`: probability of mutation (double, default=0.0).
+- `-s seed`: initialization for the random number generator (long or string, default=current_ts)
+
+#### Example
+
+`./mutate -i ../example/chry.txt -o ../example/chry_mod.txt -p 0.5 -s 1234`
 
 ## Authors
 
