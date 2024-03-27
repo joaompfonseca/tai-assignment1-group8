@@ -31,7 +31,9 @@ The `mutate` program is a simple command-line tool that mutates symbols in a giv
 probability. The program reads the input file and writes the mutated stream to an output file. The user can specify
 the seed for the random number generator and the probability of mutation.
 
-### Compile (optional, use executable inside bin)
+### Compile
+
+It's optional, since you can use the provided executable inside the `bin` directory.
 
 - Run `g++ -Wall -O3 -o mutate src/mutate.cpp` in root to compile the program.
 
