@@ -42,18 +42,18 @@ It's optional, since you can use the provided executable inside the `bin` direct
 - Run `cd bin` in root to change to the executable's directory.
 - Run `./mutate REQUIRED OPTIONAL` to execute the program.
 
-### Required arguments
+#### Required arguments
 
 - `-i input_file_path`: path to the input file (string).
 - `-o output_file_path`: path to the output file (string).
 
-### Optional arguments
+#### Optional arguments
 
 - `-h`: shows how to use the program.
 - `-p probability`: probability of mutation (double, default=0.0).
 - `-s seed`: initialization for the random number generator (long or string, default=current_ts)
 
-### Example
+#### Example
 
 `./mutate -i ../example/chry.txt -o ../example/chry_mod.txt -p 0.5 -s 1234`
 
