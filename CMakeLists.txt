@@ -11,3 +11,5 @@ add_executable(cpm src/cpm.cpp
         src/copymodel/CopyModel.h
         src/copymodel/CopyModelRunner.cpp
         src/copymodel/CopyModelRunner.h)
+
+add_executable(mutate src/mutate.cpp)

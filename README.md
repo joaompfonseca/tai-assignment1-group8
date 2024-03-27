@@ -56,7 +56,7 @@ the seed for the random number generator and the probability of mutation.
 It's optional, since you can use the provided executable inside the `bin` directory.
 
 - Run `cd bin` in root.
-- Run `g++ -Wall -O3 -o mutate ../src/mutate.cpp` to compile the program.
+- Run `cmake .. && make` to compile the program.
 
 ### Execute
 
