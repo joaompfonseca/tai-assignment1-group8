@@ -2,10 +2,10 @@
 
 ## Description
 
-This first assignment's goal was to explore the usage of copy models for data compression.
-
-This repository contains the [report](report/report.pdf) and the two programs developed for this [assignment](description.pdf): `cpm`
+This first assignment's goal was to explore the usage of copy models for data compression. This repository contains the [report](report/report.pdf) and the two programs developed for this [assignment](description.pdf): `cpm`
 and `mutate`.
+
+Check out our demonstration video: https://youtu.be/pRwltWg1mWE
 
 **Course:** Algorithmic Theory of Information (2023/2024).
 
