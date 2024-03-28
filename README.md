@@ -2,12 +2,14 @@
 
 ## Description
 
+**Course:** Algorithmic Theory of Information (2023/2024)
+
 This first assignment's goal was to explore the usage of copy models for data compression. This repository contains the [report](report/report.pdf) and the two programs developed for this [assignment](description.pdf): `cpm`
 and `mutate`.
 
 Check out our demonstration video: https://youtu.be/pRwltWg1mWE
 
-**Course:** Algorithmic Theory of Information (2023/2024).
+**Best result for estimated number of bits**: 1.45873 bps (best parameters in the report)
 
 ## The `cpm` program
 
